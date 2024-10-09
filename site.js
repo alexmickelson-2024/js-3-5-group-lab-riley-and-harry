@@ -5,7 +5,6 @@ import { bookList } from "./books.js";
 const filterText = document.getElementById("filterInput")
 filterText.addEventListener("input", () => {
   drawBooks(bookList, filterText.value);
-  console.log(filterText.value)
 })
 
 
@@ -33,12 +32,11 @@ const drawBooks = (books, filterTextContent) => {
 
   books.forEach(book => {
     const BookNode = generateBookNodes(book)
-    if (true) {
+    if (BookNode.getElementsByTagName("td")[0].textContent.includes(filterTextContent) || BookNode.getElementsByTagName("td")[1].textContent.includes(filterTextContent) || BookNode.getElementsByTagName("td")[2].textContent.includes(filterTextContent)) {
       tableBodyElement.appendChild(BookNode);
     }
-    console.log(BookNode.getElementsByTagName("td")[0])
   })
 
 }
 
-drawBooks(bookList);
+drawBooks(bookList, "");
