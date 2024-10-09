@@ -2,18 +2,13 @@ import { bookList } from "./books.js";
 
 
 
-
+const filterText = document.getElementById("filterInput")
+filterText.addEventListener("input", (typedText)=> {
+    console.log(typedText)
+})
 
 
 const drawBooks = (books) => {
-  // const bookHTML = (book) =>
-  //    `
-  //   <tr>
-  //     <td>${book.title}</td>
-  //     <td>${book.author}</td>
-  //     <td>${book.summary}</td>
-  //   </tr>
-  // `
   const generateBookNodes = (book) => {
     const tableRowNode = document.createElement("tr")
     const tableDataTitle = document.createElement("td")
@@ -23,6 +18,9 @@ const drawBooks = (books) => {
     tableDataAuthor.textContent = `${book.author}`
     tableDataSummary.textContent = `${book.summary}`
     tableRowNode.replaceChildren(tableDataTitle,tableDataAuthor,tableDataSummary)
+    tableRowNode.addEventListener("click", (click) => {
+      document.getElementById("selectedBookTitle").textContent = `${tableDataTitle.textContent}`
+    })
     return tableRowNode;
   }
   const tableBodyElement = document.getElementById("myTableBody")
@@ -32,6 +30,7 @@ const drawBooks = (books) => {
     const BookNode = generateBookNodes(book)
     tableBodyElement.appendChild(BookNode);
   })
+
 }
 
 drawBooks(bookList);
