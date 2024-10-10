@@ -17,12 +17,12 @@ const drawBooks = (books, filterTextContent) => {
     tableDataTitle.classList.add("title")
     tableDataAuthor.classList.add("author")
     tableDataSummary.classList.add("sumarry")
-    tableDataTitle.textContent = `${book.title}`
-    tableDataAuthor.textContent = `${book.author}`
-    tableDataSummary.textContent = `${book.summary}`
+    tableDataTitle.textContent = book.title
+    tableDataAuthor.textContent = book.author
+    tableDataSummary.textContent = book.summary
     tableRowNode.replaceChildren(tableDataTitle, tableDataAuthor, tableDataSummary)
     tableRowNode.addEventListener("click", (click) => {
-      document.getElementById("selectedBookTitle").textContent = `${tableDataTitle.textContent}`
+      document.getElementById("selectedBookTitle").textContent = tableDataTitle.textContent
     })
 
     return tableRowNode;
@@ -32,7 +32,9 @@ const drawBooks = (books, filterTextContent) => {
 
   books.forEach(book => {
     const BookNode = generateBookNodes(book)
-    if (BookNode.getElementsByTagName("td")[0].textContent.includes(filterTextContent) || BookNode.getElementsByTagName("td")[1].textContent.includes(filterTextContent) || BookNode.getElementsByTagName("td")[2].textContent.includes(filterTextContent)) {
+    if (BookNode.getElementsByTagName("td")[0].textContent.includes(filterTextContent)
+          || BookNode.getElementsByTagName("td")[1].textContent.includes(filterTextContent) 
+          || BookNode.getElementsByTagName("td")[2].textContent.includes(filterTextContent)) {
       tableBodyElement.appendChild(BookNode);
     }
   })
