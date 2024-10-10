@@ -33,8 +33,8 @@ const drawBooks = (books, filterTextContent) => {
   books.forEach(book => {
     const BookNode = generateBookNodes(book)
     if (BookNode.getElementsByTagName("td")[0].textContent.includes(filterTextContent)
-          || BookNode.getElementsByTagName("td")[1].textContent.includes(filterTextContent) 
-          || BookNode.getElementsByTagName("td")[2].textContent.includes(filterTextContent)) {
+      || BookNode.getElementsByTagName("td")[1].textContent.includes(filterTextContent)
+      || BookNode.getElementsByTagName("td")[2].textContent.includes(filterTextContent)) {
       tableBodyElement.appendChild(BookNode);
     }
   })
